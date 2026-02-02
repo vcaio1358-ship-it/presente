@@ -31,6 +31,7 @@
 }
 
 .conteudo {
+  width: 100%;
   display: flex;
   gap: 40px;
   align-items: center;
@@ -43,9 +44,9 @@
 }
 
 .imagemPrincipal {
-  width: 380px;
-  height: 380px;
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
 }
 
 .imagens {
@@ -77,4 +78,33 @@ img{
 
 .branca {
   background-color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+
+  .retrospectiva {
+    padding: 30px 15px;
+  }
+
+  .conteudo {
+    gap: 20px;
+  }
+
+  .carrossel {
+    width: 60%;
+  }
+
+  .texto-retro {
+    width: 40%;
+    font-size: 18px;
+  }
+
+  .imagemPrincipal {
+    max-width: 100%;
+  }
+
+  .imagemCarrossel {
+    width: 50px;
+    height: 50px;
+  }
 }
