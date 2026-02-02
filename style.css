@@ -10,7 +10,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: heroEntrada 1.5s ease forwards;
+
+  transform: scale(1.1);
+  opacity: 0;
+  transition: all 1.5s ease;
+}
+
+.hero.hero-animada{
+  transform: scale(1);
+  opacity: 1;
 }
 
 .overlay {
@@ -18,7 +26,15 @@ body {
   border-radius: 20px;
   text-align: center;
   color: white;
-  animation: overlayEntrada 1.5s ease forwards;
+
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1.2s ease 0.5s;
+}
+
+.overlay.overlay-animada{
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .overlay p {
@@ -33,6 +49,14 @@ body {
 
 .retrospectiva {
   padding: 60px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.retrospectiva.aparecer{
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mes {
@@ -56,14 +80,42 @@ body {
   border-radius: 20px;
 }
 
+.rodape {
+  padding: 80px 20px 40px;
+  text-align: center;
+  background-color: #FFF5E4;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.rodape.aparecer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.frase-final {
+  font-size: 26px;
+  color: #8B3A3A;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.assinatura {
+  font-size: 16px;
+  color: #8B3A3A;
+  opacity: 0.7;
+}
+
 .imagemPrincipal {
   width: 100%;
-  max-width: 100%;
   aspect-ratio: 1 / 1;
   padding-bottom: 9px;
+
   touch-action: pan-y;
   cursor: grab;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  transition: all 0.4s ease;
 }
 
 .imagemPrincipal:active{
@@ -82,8 +134,8 @@ body {
 }
 
 img{
-    border-radius: 10px;
-    object-fit: cover;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .texto-retro {
@@ -92,50 +144,22 @@ img{
   font-size: 20px;
   color: #8B3A3A;
   line-height: 1.5;
+
+  transition: all 0.4s ease;
 }
 
 .bege {
-  background-color: #FFF5E4;
+  background-color: #EECBB0;
 }
 
 .branca {
-  background-color: #FFFFFF;
-}
-
-@keyframes heroEntrada {
-  from {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes overlayEntrada {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  background-color: #F7F0EB;
 }
 
 @media (max-width: 768px) {
 
   .retrospectiva {
     padding: 30px 15px;
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.8s ease;
-  }
-
-  .retrospectiva.aparecer {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .conteudo {
@@ -149,11 +173,6 @@ img{
   .texto-retro {
     width: 30%;
     font-size: 18px;
-    line-height: 1.6;
-  }
-
-  .imagemPrincipal {
-    max-width: 100%;
   }
 
   .imagemCarrossel {
@@ -161,3 +180,11 @@ img{
     height: 50px;
   }
 }
+
+.frase-final {
+    font-size: 20px;
+  }
+
+  .assinatura {
+    font-size: 14px;
+  }
