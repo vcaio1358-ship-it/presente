@@ -1,3 +1,13 @@
+window.addEventListener('load', () => {
+
+  const hero = document.querySelector('.hero');
+  const overlay = document.querySelector('.overlay');
+
+  hero.classList.add('hero-animada');
+  overlay.classList.add('overlay-animada');
+
+});
+
 document.querySelectorAll('.retrospectiva').forEach((secao) => {
 
   const imagemPrincipal = secao.querySelector('.imagemPrincipal');
@@ -8,34 +18,34 @@ document.querySelectorAll('.retrospectiva').forEach((secao) => {
   let startX = 0;
   let isDragging = false;
 
-  // ===== FUNÇÃO COM ANIMAÇÃO SUAVE =====
   function atualizarCarousel(index) {
 
-    // anima saída
     imagemPrincipal.style.opacity = 0;
     imagemPrincipal.style.transform = "scale(0.95)";
+
+    textoRetro.style.opacity = 0;
+    textoRetro.style.transform = "translateY(10px)";
 
     setTimeout(() => {
 
       imagemPrincipal.src = imagens[index].src;
       textoRetro.textContent = imagens[index].dataset.texto;
 
-      // anima entrada
       imagemPrincipal.style.opacity = 1;
       imagemPrincipal.style.transform = "scale(1)";
 
-    }, 200);
+      textoRetro.style.opacity = 1;
+      textoRetro.style.transform = "translateY(0)";
+
+    }, 250);
   }
 
-  // ===== CLIQUE NAS MINIATURAS =====
-  imagens.forEach((imagem, index) => {
-    imagem.addEventListener('click', () => {
+  imagens.forEach((img, index) => {
+    img.addEventListener('click', () => {
       indexAtual = index;
       atualizarCarousel(indexAtual);
     });
   });
-
-  // ===== SWIPE MOBILE =====
 
   imagemPrincipal.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
@@ -43,20 +53,13 @@ document.querySelectorAll('.retrospectiva').forEach((secao) => {
 
   imagemPrincipal.addEventListener('touchend', (e) => {
 
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
+    const diff = startX - e.changedTouches[0].clientX;
 
-    if (diff > 50 && indexAtual < imagens.length - 1) {
-      indexAtual++;
-    } 
-    else if (diff < -50 && indexAtual > 0) {
-      indexAtual--;
-    }
+    if (diff > 50 && indexAtual < imagens.length - 1) indexAtual++;
+    else if (diff < -50 && indexAtual > 0) indexAtual--;
 
     atualizarCarousel(indexAtual);
   });
-
-  // ===== DRAG DESKTOP =====
 
   imagemPrincipal.addEventListener('mousedown', (e) => {
     startX = e.clientX;
@@ -69,21 +72,14 @@ document.querySelectorAll('.retrospectiva').forEach((secao) => {
 
     const diff = startX - e.clientX;
 
-    if (diff > 50 && indexAtual < imagens.length - 1) {
-      indexAtual++;
-    } 
-    else if (diff < -50 && indexAtual > 0) {
-      indexAtual--;
-    }
+    if (diff > 50 && indexAtual < imagens.length - 1) indexAtual++;
+    else if (diff < -50 && indexAtual > 0) indexAtual--;
 
     atualizarCarousel(indexAtual);
     isDragging = false;
   });
 
 });
-
-
-// ===== ANIMAÇÃO AO ROLAR A PÁGINA =====
 
 const secoes = document.querySelectorAll('.retrospectiva');
 
@@ -95,10 +91,21 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 
+}, { threshold: 0.2 });
+
+secoes.forEach(secao => observer.observe(secao));
+
+const rodape = document.querySelector('.rodape');
+
+const observerRodape = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      rodape.classList.add('aparecer');
+    }
+  });
 }, {
-  threshold: 0.2
+  threshold: 0.3
 });
 
-secoes.forEach(secao => {
-  observer.observe(secao);
-});
+observerRodape.observe(rodape);
+
