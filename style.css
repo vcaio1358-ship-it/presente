@@ -1,0 +1,80 @@
+.hero {
+  height: 100vh;
+  background-image: url("images/imagem-principal.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 48px;
+}
+
+.retrospectiva {
+  padding: 60px;
+}
+
+.mes {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #8B3A3A;
+}
+
+.conteudo {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.carrossel {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.imagemPrincipal {
+  width: 380px;
+  height: 380px;
+  margin-bottom: 15px;
+}
+
+.imagens {
+  display: flex;
+  gap: 10px;
+}
+
+.imagemCarrossel {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+img{
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.texto-retro {
+  max-width: 350px;
+  font-size: 20px;
+  color: #8B3A3A;
+  line-height: 1.5;
+}
+
+.bege {
+  background-color: #FFF5E4;
+}
+
+.branca {
+  background-color: #FFFFFF;
+}
